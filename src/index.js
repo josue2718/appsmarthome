@@ -61,6 +61,29 @@ app.post('/insertar', async (req, res) => {
 });
 
 
+app.post('/insertartipo', async (req, res) => {
+  console.log('Datos recibidos:', req.body);
+
+  try {
+    const { nombre } = req.body; // Extraer nombre de req.body
+
+    if (!nombre) {
+      return res.status(400).send('El campo "nombre" es obligatorio.');
+    }
+
+    // Insertar el documento en MongoDB
+    const collection = db.collection('Electrodomesticos');
+    await collection.insertOne({ nombre });
+
+    console.log('Datos insertados correctamente en MongoDB.');
+    res.status(200).send('Datos insertados correctamente.');
+  } catch (err) {
+    console.error('Error al insertar en MongoDB:', err);
+    res.status(500).send('Error interno del servidor.');
+  }
+});
+
+
 app.put('/foco', async (req, res) => {
   console.log('Datos recibidos:', req.body);
 
