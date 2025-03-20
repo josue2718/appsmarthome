@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/src/styles/devices.css">
-    <link rel="stylesheet" href="/src/styles/bar.css">
-    <script src="navigation.js"></script>
+    <link rel="stylesheet" href="styles/devices.css">
+    <link rel="stylesheet" href="styles/bar.css">
+    <script src="views/navigation.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -21,7 +21,7 @@
             <div class="titulo">
                 <h2>Agregar dispositivo</h2>
                 <button onclick="cerrar()">
-                    <img src="/src/assets/circle-x.svg" alt="">
+                    <img src="assets/circle-x.svg" alt="">
                 </button>
             </div>
 
@@ -65,7 +65,7 @@
             <div class="titulo">
                 <h2>Agregar dispositivo</h2>
                 <button onclick="cerrarConfig()">
-                    <img src="/src/assets/circle-x.svg" alt="">
+                    <img src="assets/circle-x.svg" alt="">
                 </button>
             </div>
 
@@ -97,7 +97,7 @@
             <div class="device-content">
                 <div class="item-content">
                     <button onclick="abrirPanelAgregar()">
-                        <img src="/src/assets/+.svg" alt="">
+                        <img src="assets/+.svg" alt="">
                     </button>
                     <p>Agregar</p> 
                 </div> 
@@ -114,17 +114,17 @@
 
         <nav class="bottom-var">
             <button onclick="monitoreoView()">
-                <img src="/src/assets/activity.svg" alt="Monitoreo">
+                <img src="assets/activity.svg" alt="Monitoreo">
                 <p>Monitoreo</p>
             </button>
 
             <button onclick="inicioView()"> 
-                <img src="/src/assets/layout-grid.svg" alt="Inicio">
+                <img src="assets/layout-grid.svg" alt="Inicio">
                 <p>Inicio</p>
             </button>
 
             <button onclick="dispositivosView()">
-                <img src="/src/assets/monitor-speaker.svg" alt="Dispositivos">
+                <img src="assets/monitor-speaker.svg" alt="Dispositivos">
                 <p>Dispositivos</p>
             </button>
         </nav>
@@ -166,10 +166,10 @@
 
             // Asigna una imagen dependiendo del tipo de dispositivo seleccionado
             if (tipoDispositivo === "foco") {
-                img.src = "/src/assets/lamp-ceiling.svg"; // Imagen para foco
+                img.src = "assets/lamp-ceiling.svg"; // Imagen para foco
                 img.alt = "Foco";
             } else if (tipoDispositivo === "camara") {
-                img.src = "/src/assets/cctv.svg"; // Imagen para cámara
+                img.src = "assets/cctv.svg"; // Imagen para cámara
                 img.alt = "Cámara";
             }
 
