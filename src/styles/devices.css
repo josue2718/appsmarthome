@@ -1,230 +1,264 @@
-    @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-    *{
-        padding: 0;
-        margin: 0;
-        font-family: 'Roboto';
-    }
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+}
 
-    .app-container{
-        display: grid;
-        place-items: center;
-        grid-template-rows: 100px 1fr 100px;
+.app-container{
+    display: grid;
+    place-items: center;
+    grid-template-rows: 100px 1fr 100px;
 
-        background: linear-gradient(to bottom, #1C1823, #241E31);
-        height: 100vh;
-    }
+    background: linear-gradient(to bottom, #1C1823, #241E31);
+    height: 100vh;
+}
 
-    .BG-dev {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        padding: 90px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 90px;
-        color: #463E57;
-    }
+.BG-dev {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 90px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 90px;
+    color: #463E57;
 
-    .device-container  {
-        border: 1px solid #B793FF;
-        border-radius: 20px;
-        background-color: rgb(0, 0, 0, 0.28);
-        width: 310px;
-        height: 574px;
-        color: white;
-        padding: 20px;
-        position: relative;
-        bottom: 10px;
+    z-index: 0;
+}
 
-        display: block;
-    }
+.device-container  {
+    border: 1px solid #B793FF;
+    border-radius: 20px;
+    background-color: rgb(0, 0, 0, 0.28);
+    width: 310px;
+    height: 574px;
+    color: white;
+    padding: 20px;
+    position: relative;
+    bottom: 10px;
 
-
-    .device-content {
-        margin-top: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-
-        width: 100%; 
-        max-height: 520px; 
-        overflow-y: auto; 
-        overflow-x: hidden;
-    }   
-
-    .device-content button {
-        border: none;
-        border-radius: 20px;
-        text-align: center;
-        align-content: center;
-        background-color: rgb(0, 0, 0, 0.18);
-        width: 95px;
-        height: 95px;
-    }
-
-    .item-content p {
-        text-align: center;
-        font-size: 14px;
-        margin-top: 10px;
-    }
+    display: block;
+}
 
 
-    /* Diseño para la ventana de agregar dispositivo */
+.device-content {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 
-    .new-device {
-        display: none;
-        z-index: 1000;
+    width: 100%; 
+    max-height: 520px; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+}   
 
-        border: 1px solid #B793FF;
-        border-radius: 20px;
-        background-color: rgb(0, 0, 0, 0.28);
-        width: 310px;
-        height: 574px;
-        color: white;
-        padding: 20px;
-        position: relative;
-        bottom: 10px;
-    }
-
-
-    .create-device {
-        display: grid;
-        grid-auto-columns: 1fr 1fr;
-        grid-template-areas:
-        "nombre nombre"
-        "tipo lugar"
-        "add add";
-        
-        gap: 25px;
-
-    }
-
-    .nombre {
-        grid-area: nombre;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .nombre input {
-        padding: 12px;
-        border: 1px solid rgba(243, 201, 250, 0.72);
-        background-color: rgb(0, 0, 0, 0.18);
-        border-radius: 5px;
-        color: white;
-        transition: border-color 0.3s ease;
-    }
-
-    .nombre input:hover,
-    .tipo select:hover,
-    .numero select:hover{
-        border-color: #B793FF;
-    }
-
-    .nombre input:focus,
-    .tipo select:focus,
-    .numero select:focus {
-        border-color: #d1bcfc;
-        outline: none;
-    }
-
-    .nombre label {
-        font-size: 14px;
-        margin-top: 25px;
-    }
-
-    .tipo {
-        grid-area: tipo;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .tipo select {
-        color: #E3BED8;
-        background-color: rgb(0, 0, 0, 0.18);
-        border: 1px solid rgba(243, 201, 250, 0.72);
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .tipo label {
-        font-size: 14px;
-
-    }
-
-    .tipo option{
-        padding: 20px;
-        background-color: #1C1823;
-    }
+.device-content button {
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    align-content: center;
+    background-color: rgb(21, 16, 26);
+    width: 95px;
+    height: 95px;
+}
 
 
-    .numero {
-        grid-area: lugar;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
+.item-content p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
 
-    .numero select {
-        color: #E3BED8;
-        background-color: rgb(0, 0, 0, 0.18);
-        border: 1px solid rgba(243, 201, 250, 0.72);
-        padding: 10px;
-        border-radius: 5px;
-    }
+}
 
-    .numero label {
-        font-size: 14px;
-    }
 
+/* Diseño para la ventana de agregar dispositivo */
+
+.new-device {
+    display: none;
+    z-index: 1000;
+
+    border: 1px solid #B793FF;
+    border-radius: 20px;
+    background-color: rgb(0, 0, 0, 0.28);
+    width: 310px;
+    height: 574px;
+    color: white;
+    padding: 20px;
+    position: relative;
+    bottom: 10px;
+}
+
+
+.create-device {
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas:
+    "nombre nombre"
+    "tipo lugar"
+    "add add";
     
-    .numero option{
-        padding: 20px;
-        background-color: #1C1823;
-    }
+    gap: 25px;
 
-    .titulo {
-        display: flex;
-        gap: 65px;
-        color: white;
-    }
+}
 
-    .titulo button {
-        position: relative;
-        left: 5px;
-        border: none;
-        background-color: transparent;
-        align-content: center;
-        justify-content: center;
-        width: 30px;
-        height: 30px;
-    }
+.nombre {
+    grid-area: nombre;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
-    .add-btn {
-        display: flex;
-        justify-content: center;
-        align-content: center;
+.nombre input {
+    padding: 12px;
+    border: 1px solid rgba(243, 201, 250, 0.72);
+    background-color: rgb(0, 0, 0, 0.18);
+    border-radius: 5px;
+    color: white;
+    transition: border-color 0.3s ease;
+}
 
-        position: relative;
-        top:305px
-    }
+.nombre input:hover,
+.tipo select:hover,
+.numero select:hover{
+    border-color: #B793FF;
+}
 
-    .add-btn button{
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 10px;
-        background-color: rgb(166,103,255,0.50)   ;
+.nombre input:focus,
+.tipo select:focus,
+.numero select:focus {
+    border-color: #d1bcfc;
+    outline: none;
+}
 
-        width: 500px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.nombre label {
+    font-size: 14px;
+    margin-top: 25px;
+}
+
+.tipo {
+    grid-area: tipo;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tipo select {
+    color: #E3BED8;
+    background-color: rgb(0, 0, 0, 0.18);
+    border: 1px solid rgba(243, 201, 250, 0.72);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.tipo label {
+    font-size: 14px;
+
+}
+
+.tipo option{
+    padding: 20px;
+    background-color: #1C1823;
+}
 
 
-    .add-btn button:hover {
-        background-color: rgba(187, 161, 248, 0.5)   ;
-    }
+.numero {
+    grid-area: lugar;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.numero select {
+    color: #E3BED8;
+    background-color: rgb(0, 0, 0, 0.18);
+    border: 1px solid rgba(243, 201, 250, 0.72);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.numero label {
+    font-size: 14px;
+}
+
+
+.numero option{
+    padding: 20px;
+    background-color: #1C1823;
+}
+
+.titulo {
+    display: flex;
+    gap: 65px;
+    color: white;
+}
+
+.titulo button {
+    position: relative;
+    left: 5px;
+    border: none;
+    background-color: transparent;
+    align-content: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+.add-btn {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    position: relative;
+    top:305px
+}
+
+.add-btn button{
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(166,103,255,0.50)   ;
+
+    width: 500px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.add-btn button:hover {
+    background-color: rgba(187, 161, 248, 0.5)   ;
+}
+
+
+
+/* Configurar el dispositivo */
+.device-config {
+    display: none;
+    z-index: 1000;
+
+    border: 1px solid #B793FF;
+    border-radius: 20px;
+    background-color: rgb(0, 0, 0, 0.28);
+    width: 310px;
+    height: 574px;
+    color: white;
+    padding: 20px;
+    position: relative;
+    bottom: 10px;
+}
+
+.configurar-disp {
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas:
+    "nombre nombre"
+    "tipo lugar"
+    "add add";
+    
+    gap: 25px;
+
+}

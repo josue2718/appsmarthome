@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles/devices.css">
-    <link rel="stylesheet" href="styles/bar.css">
-    <script src="views/navigation.js"></script>
+    <link rel="stylesheet" href="/src/styles/devices.css">
+    <link rel="stylesheet" href="/src/styles/bar.css">
+    <script src="navigation.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -21,7 +21,7 @@
             <div class="titulo">
                 <h2>Agregar dispositivo</h2>
                 <button onclick="cerrar()">
-                    <img src="assets/circle-x.svg" alt="">
+                    <img src="/src/assets/circle-x.svg" alt="">
                 </button>
             </div>
 
@@ -53,8 +53,36 @@
             </div>
 
             <div class="add-btn">
-                <button>
+                <button onclick="agregarItem()">
                     Agregar
+                </button>
+            </div>
+
+        </div>
+
+        <div class="device-config" id="interface-2">
+
+            <div class="titulo">
+                <h2>Agregar dispositivo</h2>
+                <button onclick="cerrarConfig()">
+                    <img src="/src/assets/circle-x.svg" alt="">
+                </button>
+            </div>
+
+            <div class="configurar-disp">
+                <div class="hora-inicio">
+
+                </div>
+                <div class="hora fin">
+
+                </div>
+            </div>
+
+            
+
+            <div class="aplication-btn">
+                <button>
+                    Aceptar
                 </button>
             </div>
 
@@ -68,17 +96,17 @@
             <!-- Para el flex de dispositivos -->
             <div class="device-content">
                 <div class="item-content">
-                    <button onclick="Agregar()">
-                        <img src="assets/+.svg" alt="">
+                    <button onclick="abrirPanelAgregar()">
+                        <img src="/src/assets/+.svg" alt="">
                     </button>
                     <p>Agregar</p> 
                 </div> 
             </div>
 
-            <div class="BG-dev">
-                <img src="assets/bg-devices.svg" alt="">
+<!--             <div class="BG-dev">
+                <img src="/src/assets/bg-devices.svg" alt="">
                 <p>Todos los dispositivos</p>
-            </div>
+            </div> -->
 
             
 
@@ -86,17 +114,17 @@
 
         <nav class="bottom-var">
             <button onclick="monitoreoView()">
-                <img src="assets/activity.svg" alt="Monitoreo">
+                <img src="/src/assets/activity.svg" alt="Monitoreo">
                 <p>Monitoreo</p>
             </button>
 
             <button onclick="inicioView()"> 
-                <img src="assets/layout-grid.svg" alt="Inicio">
+                <img src="/src/assets/layout-grid.svg" alt="Inicio">
                 <p>Inicio</p>
             </button>
 
             <button onclick="dispositivosView()">
-                <img src="assets/monitor-speaker.svg" alt="Dispositivos">
+                <img src="/src/assets/monitor-speaker.svg" alt="Dispositivos">
                 <p>Dispositivos</p>
             </button>
         </nav>
@@ -104,15 +132,77 @@
     </div>
 
     <script>
-        function Agregar(){
-            document.getElementById("interface-1").style.display="block";
-            document.getElementById("device-view").style.display="none";
+       // Función para abrir el panel de agregar dispositivo
+        function abrirPanelAgregar() {
+            document.getElementById("interface-1").style.display = "block";
+            document.getElementById("device-view").style.display = "none";
         }
 
-        function cerrar(){
-            document.getElementById("interface-1").style.display="none";
-            document.getElementById("device-view").style.display="block";
+        // Función para cerrar el panel y volver a la vista de dispositivos
+        function cerrar() {
+            document.getElementById("interface-1").style.display = "none";
+            document.getElementById("device-view").style.display = "block";
         }
+
+        function cerrarConfig() {
+            document.getElementById("interface-2").style.display = "none";
+            document.getElementById("device-view").style.display = "block";
+        }
+
+        // Función para agregar elementos
+        // Función para agregar elementos
+       // Función para agregar elementos
+        function agregarItem() {
+            // Obtén el valor del tipo de dispositivo seleccionado
+            const tipoDispositivo = document.getElementById("tipoDispositivo").value;
+
+            // Crea un nuevo div con la clase "item-content"
+            const nuevoItem = document.createElement("div");
+            nuevoItem.classList.add("item-content");
+
+            // Agrega un botón e imagen al nuevo div
+            const boton = document.createElement("button");
+            const img = document.createElement("img");
+
+            // Asigna una imagen dependiendo del tipo de dispositivo seleccionado
+            if (tipoDispositivo === "foco") {
+                img.src = "/src/assets/lamp-ceiling.svg"; // Imagen para foco
+                img.alt = "Foco";
+            } else if (tipoDispositivo === "camara") {
+                img.src = "/src/assets/cctv.svg"; // Imagen para cámara
+                img.alt = "Cámara";
+            }
+
+            boton.appendChild(img);
+
+            // Agregar funcionalidad personalizada al botón
+            boton.addEventListener("click", function () {
+                // Define aquí la función personalizada para el dispositivo
+                accionPersonalizada(tipoDispositivo);
+            });
+
+            const parrafo = document.createElement("p");
+            parrafo.textContent = tipoDispositivo.charAt(0).toUpperCase() + tipoDispositivo.slice(1);
+
+            // Adjunta el botón y el párrafo al nuevo div
+            nuevoItem.appendChild(boton);
+            nuevoItem.appendChild(parrafo);
+
+            // Inserta el nuevo div en el contenedor "device-content"
+            const contenedor = document.querySelector(".device-content");
+            contenedor.appendChild(nuevoItem);
+
+            // Cierra el panel de agregar dispositivo
+            cerrar();
+        }
+
+        // Función para manejar una acción personalizada
+        function accionPersonalizada(tipo) {
+            document.getElementById("interface-2").style.display = "block";
+            document.getElementById("device-view").style.display = "none";
+        }
+
+
     </script>
 </body>
 </html>
