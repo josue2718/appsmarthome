@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/monitoreo.css">
+    <link rel="stylesheet" href="styles/bar.css">
+    <script src="views/navigation.js"></script>
+</head>
+<body>
+    <div class="app-container">
+
+        <nav>
+
+        </nav>
+
+        <div class="notify-content">
+            <h2>Monitoreo</h2>
+            <div class="notify" id="notifyContainer">
+              <!-- Aquí aparecerán las notificaciones -->
+            </div>
+        </div>
+
+        <nav class="bottom-var">
+            <button onclick="monitoreoView()">
+                <img src="assets/activity.svg" alt="Monitoreo">
+                <p>Monitoreo</p>
+            </button>
+
+            <button onclick="inicioView()"> 
+                <img src="assets/layout-grid.svg" alt="Inicio">
+                <p>Inicio</p>
+            </button>
+
+            <button onclick="dispositivosView()">
+                <img src="assets/monitor-speaker.svg" alt="Dispositivos">
+                <p>Dispositivos</p>
+            </button>
+        </nav>
+
+    </div>
+    <script>
+        function agregarNotificacion(mensaje) {
+          const notifyContainer = document.getElementById("notifyContainer");
+      
+          // Crear el contenedor de la notificación
+          const nuevaNotificacion = document.createElement("div");
+          nuevaNotificacion.className = "notificacion";
+      
+          // Generar el contenido truncado con JavaScript
+          const textoCompleto = document.createElement("span");
+          textoCompleto.textContent = mensaje;
+          textoCompleto.className = "texto-completo";
+          nuevaNotificacion.appendChild(textoCompleto);
+      
+          const textoTruncado = mensaje.length > 60 ? mensaje.slice(0, 57) + "..." : mensaje;
+          const textoVisible = document.createElement("span");
+          textoVisible.textContent = textoTruncado;
+          textoVisible.className = "texto-visible";
+          nuevaNotificacion.appendChild(textoVisible);
+      
+          // Configurar evento de clic para alternar entre truncado y completo
+          nuevaNotificacion.addEventListener("click", () => {
+            const esExpandida = nuevaNotificacion.classList.toggle("expandida");
+            textoVisible.style.display = esExpandida ? "none" : "inline";
+            textoCompleto.style.display = esExpandida ? "inline" : "none";
+          });
+      
+          // Estilo inicial
+          textoCompleto.style.display = "none"; // Ocultar texto completo inicialmente
+          notifyContainer.appendChild(nuevaNotificacion);
+        }
+      
+        // Ejemplo: Añadir notificaciones
+        agregarNotificacion("Esta es una notificación corta.");
+        agregarNotificacion(
+          "Esta es una notificación con un texto mucho más largo que probablemente sobrepase el límite establecido para las notificaciones y necesitarás presionar para expandirla."
+        );
+      </script>
+</body>
+</html>

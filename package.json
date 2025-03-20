@@ -2,10 +2,10 @@
   "name": "iotapp",
   "version": "1.0.0",
   "description": "app de iot",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+  "main": "src/routes/index.js",
+ "scripts": {
+    "start": "node src/routes/index.js",
+    "dev": "nodemon src/routes/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "josue",

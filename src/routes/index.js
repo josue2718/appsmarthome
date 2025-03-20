@@ -12,8 +12,11 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 // Middleware para parsear JSON
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, '../../src')));
+
 // Habilitar CORS para permitir solicitudes desde diferentes orígenes
 app.use(cors());
+
 
 // Variable para almacenar la instancia de la base de datos
 let db;
@@ -29,6 +32,24 @@ let db;
     process.exit(1); // Finaliza la aplicación si no se puede conectar
   }
 })();
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/index.html'));
+});
+
+app.get('/monitoreo', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/monitoreo.html'));
+});
+
+app.get('/dispositivos', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/dispositivos.html'));
+});
+
+
+
+
+
+
 
 
 app.get('/arduino', async (req, res) => {
@@ -225,24 +246,20 @@ app.post('/electrodomestico', async (req, res) => {
   console.log('Datos recibidos:', req.body);
 
   try {
-    const { nombre, prendido, activo,pin } = req.body; // Extraer los valores de req.body
+    const { nombre, activo,pin } = req.body; // Extraer los valores de req.body
 
     // Validar que 'nombre' no esté vacío
     if (!nombre) {
       return res.status(400).json({ error: 'El campo "nombre" es obligatorio.' });
     }
 
-    // Validar que 'prendido' sea un booleano
-    if (prendido === undefined || typeof prendido !== 'boolean') {
-      return res.status(400).json({ error: 'El campo "prendido" es obligatorio y debe ser un booleano (true o false).' });
-    }
     if (activo === undefined || typeof activo !== 'boolean') {
       return res.status(400).json({ error: 'El campo "activo" es obligatorio y debe ser un booleano (true o false).' });
     }
 
     // Insertar el documento en MongoDB
     const collection = db.collection('Electrodomesticos');
-    await collection.insertOne({ nombre, prendido,activo,pin });
+    await collection.insertOne({ nombre,activo,pin });
 
     console.log('Datos insertados correctamente en MongoDB.');
     res.status(201).json({ mensaje: 'Datos insertados correctamente.' });
@@ -338,9 +355,6 @@ app.put('/electrodomestico/activo', async (req, res) => {
   }
 });
 
-
-
-
 // Ruta para obtener datos desde MongoDB
 app.get('/datos', async (req, res) => {
   try {
@@ -355,9 +369,6 @@ app.get('/datos', async (req, res) => {
   }
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'app', 'index.html'));
-});
 
 // Ruta para eliminar un documento por su ID
 app.delete('/eliminar/:id', async (req, res) => {

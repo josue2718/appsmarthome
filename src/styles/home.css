@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+    
+}
+
+
+.app-container{
+    display: grid;
+    grid-template-rows: 144px 100px 1fr 100px 100px;
+    place-items: center;
+    height: 100vh;
+
+    background: linear-gradient(to bottom, #1C1823, #241E31);
+}
+
+.switch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+    position: relative;
+    top: 50px;
+}
+
+.switch-container p {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+}
+
+.btn-power button {
+    background: transparent;
+    border: none;
+}
+
+.btn-power p {
+    color: #E1C9FF;
+    font-size: 14px;
+    position: relative;
+    top: 25px;
+}
+
+.device button{
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.692);
+    border: none;
+    background-color: #1C1823;
+    width: 250px;
+    height: 55px;
+    border-radius: 50px;
+
+    position: relative;
+    bottom: 40px;
+}
+
+
+
+@media(width>1000px){
+    .app-container{
+        display: grid;
+        grid-template-areas: 
+        "switch power device"
+        "switch power device"
+        "switch power device"
+        "switch power device"
+        "var var var";
+
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .switch-container {
+        grid-area: switch;
+        position: relative;
+        top: 0;
+        margin-left: 160px;
+    }
+    .btn-power {
+        grid-area: power;
+        margin: 0;
+    }
+    .device {
+        grid-area: device;
+        position: relative;
+        top: 30px;
+        margin-right: 160px;
+    }
+    .device button {
+        width: 125px;
+    }
+    .switch-container p {
+        text-align: center;
+    }
+    .bottom-var {
+        grid-area: var;
+    }
+}

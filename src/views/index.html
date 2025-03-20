@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/switch.css">
+    <link rel="stylesheet" href="styles/bar.css">
+    <script src="views/navigation.js"></script>
+</head>
+<body>
+    <div class="app-container">
+
+        <div class="nav">
+
+        </div>
+        <div class="switch-container">
+            <div class="border">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <p>Modo automatico</p>
+        </div>
+
+        <div class="btn-power">
+            <button class="on-off" id="toggleButton">
+                <img id="toggleImage" src="assets/OFF.svg" alt="Icono SVG">
+                <p id="toggleText">Apagado</p>
+            </button>
+        </div>
+
+        <div class="device">
+            <button>
+                Seleccionar
+            </button>
+        </div>
+
+        <nav class="bottom-var">
+            <button onclick="monitoreoView()">
+                <img src="assets/activity.svg" alt="Monitoreo">
+                <p>Monitoreo</p>
+            </button>
+
+            <button onclick="inicioView()"> 
+                <img src="assets/layout-grid.svg" alt="Inicio">
+                <p>Inicio</p>
+            </button>
+
+            <button onclick="dispositivosView()">
+                <img src="assets/monitor-speaker.svg" alt="Dispositivos">
+                <p>Dispositivos</p>
+            </button>
+        </nav>
+
+    </div>
+</body>
+<script>
+    const toggleButton = document.getElementById('toggleButton');
+    const toggleImage = document.getElementById('toggleImage');
+    const toggleText = document.getElementById('toggleText');
+    
+    let isOn = false;
+  
+    toggleButton.addEventListener('click', () => {
+      isOn = !isOn;
+      if (isOn) {
+        toggleImage.src = 'assets/ON.svg';
+        toggleText.textContent = 'Encendido';
+        toggleText.style.color = '#FFE6C9';
+      } else {
+        toggleImage.src = 'assets/OFF.svg';
+        toggleText.textContent = 'Apagado';
+        toggleText.style.color = ''; // Restaura el color por defecto
+      }
+    }); 
+  </script>
+</html>
