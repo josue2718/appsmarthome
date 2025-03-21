@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="styles/switch.css">
     <link rel="stylesheet" href="styles/bar.css">
     <script src="views/navigation.js"></script>
+    <script defer src="services/OnOffFoco.js"></script> <!-- Se carga el nuevo script -->
 </head>
 <body>
     <div class="app-container">
 
-        <div class="nav">
+        <div class="nav"></div>
 
-        </div>
         <div class="switch-container">
             <div class="border">
                 <label class="switch">
@@ -33,9 +33,7 @@
         </div>
 
         <div class="device">
-            <button>
-                Seleccionar
-            </button>
+            <button>Seleccionar</button>
         </div>
 
         <nav class="bottom-var">
@@ -57,24 +55,4 @@
 
     </div>
 </body>
-<script>
-    const toggleButton = document.getElementById('toggleButton');
-    const toggleImage = document.getElementById('toggleImage');
-    const toggleText = document.getElementById('toggleText');
-    
-    let isOn = false;
-  
-    toggleButton.addEventListener('click', () => {
-      isOn = !isOn;
-      if (isOn) {
-        toggleImage.src = 'assets/ON.svg';
-        toggleText.textContent = 'Encendido';
-        toggleText.style.color = '#FFE6C9';
-      } else {
-        toggleImage.src = 'assets/OFF.svg';
-        toggleText.textContent = 'Apagado';
-        toggleText.style.color = ''; // Restaura el color por defecto
-      }
-    }); 
-  </script>
 </html>

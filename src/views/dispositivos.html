@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/devices.css">
-    <link rel="stylesheet" href="styles/bar.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar Dispositivo</title>
+    <link rel="stylesheet" href="styles/devices.css" />
+    <link rel="stylesheet" href="styles/bar.css" />
     <script src="views/navigation.js"></script>
 </head>
 <body>
     <div class="app-container">
 
-        <nav>
-
-        </nav>
-
+        <nav></nav>
 
         <div class="new-device" id="interface-1">
-
             <div class="titulo">
                 <h2>Agregar dispositivo</h2>
                 <button onclick="cerrar()">
-                    <img src="assets/circle-x.svg" alt="">
+                    <img src="assets/circle-x.svg" alt="Cerrar" />
                 </button>
             </div>
 
             <div class="create-device">
                 <div class="nombre">
                     <label>Asignar nombre al dispositivo</label> 
-                    <input type="text" placeholder="Ejemplo: Foco de la sala"   >   
+                    <input type="text" placeholder="Ejemplo: Foco de la sala" />   
                 </div>
 
                 <div class="tipo"> 
@@ -41,51 +37,20 @@
 
                 <div class="numero"> 
                     <label>Lugar</label>
-                    <select id="tipoDispositivo">
-                        <option value="foco">1</option>
-                        <option value="camara">2</option>
-                        <option value="camara">3</option>
-                        <option value="camara">4</option>
-                        <option value="camara">5</option>
-                        <option value="camara">6</option>   
+                    <select id="lugar">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>   
                     </select>
                 </div>
             </div>
 
             <div class="add-btn">
-                <button onclick="agregarItem()">
-                    Agregar
-                </button>
+                <button>Agregar</button>
             </div>
-
-        </div>
-
-        <div class="device-config" id="interface-2">
-
-            <div class="titulo">
-                <h2>Agregar dispositivo</h2>
-                <button onclick="cerrarConfig()">
-                    <img src="assets/circle-x.svg" alt="">
-                </button>
-            </div>
-
-            <div class="configurar-disp">
-                <div class="hora-inicio">
-
-                </div>
-                <div class="hora fin">
-
-                </div>
-            </div>
-
-            
-
-            <div class="aplication-btn">
-                <button>
-                    Aceptar
-                </button>
-            </div>
-
         </div>
 
         <div class="device-container" id="device-view">
@@ -93,116 +58,52 @@
                 <h2>Dispositivos</h2>
             </div>
 
-            <!-- Para el flex de dispositivos -->
             <div class="device-content">
                 <div class="item-content">
-                    <button onclick="abrirPanelAgregar()">
-                        <img src="assets/+.svg" alt="">
+                    <button onclick="Agregar()">
+                        <img src="assets/+.svg" alt="Agregar" />
                     </button>
                     <p>Agregar</p> 
                 </div> 
             </div>
 
-<!--             <div class="BG-dev">
-                <img src="/src/assets/bg-devices.svg" alt="">
+            <div class="BG-dev">
+                <img src="assets/bg-devices.svg" alt="Dispositivos" />
                 <p>Todos los dispositivos</p>
-            </div> -->
-
-            
-
+            </div>
         </div>
 
         <nav class="bottom-var">
             <button onclick="monitoreoView()">
-                <img src="assets/activity.svg" alt="Monitoreo">
+                <img src="assets/activity.svg" alt="Monitoreo" />
                 <p>Monitoreo</p>
             </button>
 
             <button onclick="inicioView()"> 
-                <img src="assets/layout-grid.svg" alt="Inicio">
+                <img src="assets/layout-grid.svg" alt="Inicio" />
                 <p>Inicio</p>
             </button>
 
             <button onclick="dispositivosView()">
-                <img src="assets/monitor-speaker.svg" alt="Dispositivos">
+                <img src="assets/monitor-speaker.svg" alt="Dispositivos" />
                 <p>Dispositivos</p>
             </button>
         </nav>
-
     </div>
 
     <script>
-       // Función para abrir el panel de agregar dispositivo
-        function abrirPanelAgregar() {
+        function Agregar() {
             document.getElementById("interface-1").style.display = "block";
             document.getElementById("device-view").style.display = "none";
         }
 
-        // Función para cerrar el panel y volver a la vista de dispositivos
         function cerrar() {
             document.getElementById("interface-1").style.display = "none";
             document.getElementById("device-view").style.display = "block";
         }
-
-        function cerrarConfig() {
-            document.getElementById("interface-2").style.display = "none";
-            document.getElementById("device-view").style.display = "block";
-        }
-
-        // Función para agregar elementos
-        // Función para agregar elementos
-       // Función para agregar elementos
-        function agregarItem() {
-            // Obtén el valor del tipo de dispositivo seleccionado
-            const tipoDispositivo = document.getElementById("tipoDispositivo").value;
-
-            // Crea un nuevo div con la clase "item-content"
-            const nuevoItem = document.createElement("div");
-            nuevoItem.classList.add("item-content");
-
-            // Agrega un botón e imagen al nuevo div
-            const boton = document.createElement("button");
-            const img = document.createElement("img");
-
-            // Asigna una imagen dependiendo del tipo de dispositivo seleccionado
-            if (tipoDispositivo === "foco") {
-                img.src = "assets/lamp-ceiling.svg"; // Imagen para foco
-                img.alt = "Foco";
-            } else if (tipoDispositivo === "camara") {
-                img.src = "assets/cctv.svg"; // Imagen para cámara
-                img.alt = "Cámara";
-            }
-
-            boton.appendChild(img);
-
-            // Agregar funcionalidad personalizada al botón
-            boton.addEventListener("click", function () {
-                // Define aquí la función personalizada para el dispositivo
-                accionPersonalizada(tipoDispositivo);
-            });
-
-            const parrafo = document.createElement("p");
-            parrafo.textContent = tipoDispositivo.charAt(0).toUpperCase() + tipoDispositivo.slice(1);
-
-            // Adjunta el botón y el párrafo al nuevo div
-            nuevoItem.appendChild(boton);
-            nuevoItem.appendChild(parrafo);
-
-            // Inserta el nuevo div en el contenedor "device-content"
-            const contenedor = document.querySelector(".device-content");
-            contenedor.appendChild(nuevoItem);
-
-            // Cierra el panel de agregar dispositivo
-            cerrar();
-        }
-
-        // Función para manejar una acción personalizada
-        function accionPersonalizada(tipo) {
-            document.getElementById("interface-2").style.display = "block";
-            document.getElementById("device-view").style.display = "none";
-        }
-
-
     </script>
+    
+    <!-- Archivo de JavaScript para agregar dispositivos -->
+    <script src="services/addDevice.js"></script>
 </body>
 </html>
