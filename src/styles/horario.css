@@ -1,0 +1,138 @@
+.hora-inicio {
+    grid-area: inicio;
+    place-items: center;
+}
+
+.hora-final {
+    grid-area: final;
+    place-items: center;
+}
+
+.aplication-btn {
+    grid-area: aceptar;
+}
+
+.horario-content {  
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* Para ocultar los controles en navegadores basados en WebKit (como Chrome y Safari) */
+input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+  }
+  
+  /* Para Firefox */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+
+
+.hora input, .min input {
+    border:none;
+    width: 40px;
+    height: 40px;
+    
+    color: white;
+    background-color: rgb(0, 0, 0, 0.35);
+    text-align: center;
+}
+.periodo-am-pm select {
+    border:none;
+    width: 50px;
+    height: 40px;
+    
+    color: white;
+    background-color: rgb(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+.hora input::placeholder, .min input::placeholder {
+    color: white;
+}
+
+.puntos {
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    border-top: 1px solid rgb(189, 141, 255, 0.60);
+    border-bottom: 1px solid rgb(189, 141, 255, 0.60);
+    background-color: rgb(0, 0, 0, 0.35);
+    color: white;
+}
+
+.periodo-am-pm select {
+    padding: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.hora {
+    border-top: 1px solid rgb(189, 141, 255, 0.60);
+    border-left: 1px solid rgb(189, 141, 255, 0.60);
+    border-bottom: 1px solid rgb(189, 141, 255, 0.60);
+
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.min {
+    border-top: 1px solid rgb(189, 141, 255, 0.60);
+    border-right: 1px solid rgb(189, 141, 255, 0.60);
+    border-bottom: 1px solid rgb(189, 141, 255, 0.60);
+}
+
+.periodo-am-pm {
+    border: 1px solid rgb(189, 141, 255, 0.60);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 50px;
+}
+
+
+.hora-inicio label, .hora-final label {
+    font-size: 12px;
+    text-align: center;
+}
+
+.aplication-btn {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    position: relative;
+    top:355px
+}
+
+.aplication-btn button{
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(166,103,255,0.50)   ;
+
+    width: 500px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.device-config .titulo button {
+    position: relative;
+    left: 15px;
+    border: none;
+    background-color: transparent;
+    align-content: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}

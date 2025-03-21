@@ -255,10 +255,14 @@
     display: grid;
     grid-auto-columns: 1fr 1fr;
     grid-template-areas:
-    "nombre nombre"
-    "tipo lugar"
-    "add add";
+    "inicio final"
+    "aceptar aceptar";
     
     gap: 25px;
+    margin-top: 20px;
+    
+}
 
+.info-horario {
+    margin-top: 20px;
 }

@@ -6,7 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/devices.css">
     <link rel="stylesheet" href="styles/bar.css">
+    <link rel="stylesheet" href="styles/horario.css">
     <script src="views/navigation.js"></script>
+    <script src="routes/horarios.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -61,39 +63,67 @@
         </div>
 
         <div class="device-config" id="interface-2">
-
             <div class="titulo">
-                <h2>Agregar dispositivo</h2>
+                <h2>Programar horario</h2>
                 <button onclick="cerrarConfig()">
                     <img src="assets/circle-x.svg" alt="">
                 </button>
             </div>
 
+            <p class="info-horario">Programar horario de encendido</p>
+
             <div class="configurar-disp">
-                <div class="container">
-                    <h1>Programar Horario</h1>
-                    <label for="startTime">Hora de Inicio:</label>
-                    <input type="time" id="startTime" />
-
-                    <label for="endTime">Hora Final:</label>
-                    <input type="time" id="endTime" />
-
-                    <button onclick="checkTime()">Verificar Horario</button>
-
-                    <div class="clock" id="clock"></div>
-                    <p id="status"></p>
+                <div class="hora-inicio">
+                    <div class="horario-content">
+                        <div class="hora">
+                            <input type="number" id="hora-inicio" class="hora" min="1" max="12" placeholder="00">
+                        </div>
+                        <div class="puntos">
+                            <h4>:</h4>
+                        </div>
+                        <div class="min">
+                            <input type="number" id="minuto-inicio" class="min" min="0" max="59" placeholder="00">
+                        </div>
+                        <div class="periodo-am-pm">
+                            <select id="periodo-inicio">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="hora-inicio">Hora de inicio</label>
+                </div>
+        
+                <div class="hora-final">
+                   
+                    <div class="horario-content">
+                        <div class="hora">
+                            <input type="number" id="hora-final" class="hora" min="1" max="12" placeholder="00">
+                        </div>
+                        <div class="puntos">
+                            <h4>:</h4>
+                        </div>
+                        <div class="min">
+                            <input type="number" id="minuto-final" class="min" min="0" max="59" placeholder="00">
+                        </div>
+                        <div class="periodo-am-pm">
+                            <select id="periodo-final">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="hora-final">Hora de finalización</label>
                 </div>
             </div>
-
-            
-
+        
             <div class="aplication-btn">
-                <button>
-                    Aceptar
+                <button onclick="aplicarHorario()">
+                    <p>Aceptar</p>
                 </button>
             </div>
-
         </div>
+        
 
         <div class="device-container" id="device-view">
             <div class="titulo">
@@ -145,7 +175,7 @@
             document.getElementById("device-view").style.display = "none";
         }
 
-        // Función para cerrar el panel y volver a la vista de dispositivos
+        // Función para cerrar el panel y volver a la vista de dispositivos     
         function cerrar() {
             document.getElementById("interface-1").style.display = "none";
             document.getElementById("device-view").style.display = "block";
