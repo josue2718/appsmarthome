@@ -50,7 +50,19 @@ app.get('/dispositivos', (req, res) => {
 
 
 
+app.get('/sensorentrada', async (req, res) => {
+  try {
+    const entradas = db.collection('entradas');
+    const datos = await entradas.find({}).toArray(); // Obtiene los documentos
 
+    console.log('Datos obtenidos:', datos);
+
+    res.status(200).json(datos); // Retorna los datos como respuesta
+  } catch (err) {
+    console.error('Error al obtener datos de MongoDB:', err);
+    res.status(500).send('Error interno del servidor.');
+  }
+});
 
 app.get('/arduino', async (req, res) => {
   try {
@@ -355,19 +367,6 @@ app.put('/electrodomestico/activo', async (req, res) => {
   }
 });
 
-// Ruta para obtener datos desde MongoDB
-app.get('/datos', async (req, res) => {
-  try {
-    const collection = db.collection('db');
-    const datosensor = await collection.find({}).toArray();
-
-    console.log('Datos obtenidos:', datosensor);
-    res.status(200).json(datosensor);
-  } catch (err) {
-    console.error('Error al obtener datos de MongoDB:', err);
-    res.status(500).send('Error interno del servidor.');
-  }
-});
 
 
 // Ruta para eliminar un documento por su ID

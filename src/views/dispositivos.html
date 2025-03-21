@@ -6,6 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/devices.css">
     <link rel="stylesheet" href="styles/bar.css">
+    <script src="views/navigation.js"></script>
+    <link rel="stylesheet" href="styles/devices.css">
+    <link rel="stylesheet" href="styles/bar.css">
     <link rel="stylesheet" href="styles/horario.css">
     <script src="views/navigation.js"></script>
     <script src="routes/horarios.js"></script>
@@ -23,6 +26,7 @@
             <div class="titulo">
                 <h2>Agregar dispositivo</h2>
                 <button onclick="cerrar()">
+                    <img src="assets/circle-x.svg" alt="">
                     <img src="assets/circle-x.svg" alt="">
                 </button>
             </div>
@@ -66,6 +70,7 @@
             <div class="titulo">
                 <h2>Programar horario</h2>
                 <button onclick="cerrarConfig()">
+                    <img src="assets/circle-x.svg" alt="">
                     <img src="assets/circle-x.svg" alt="">
                 </button>
             </div>
@@ -135,6 +140,7 @@
                 <div class="item-content">
                     <button onclick="abrirPanelAgregar()">
                         <img src="assets/+.svg" alt="">
+                        <img src="assets/+.svg" alt="">
                     </button>
                     <p>Agregar</p> 
                 </div> 
@@ -152,15 +158,18 @@
         <nav class="bottom-var">
             <button onclick="monitoreoView()">
                 <img src="assets/activity.svg" alt="Monitoreo">
+                <img src="assets/activity.svg" alt="Monitoreo">
                 <p>Monitoreo</p>
             </button>
 
             <button onclick="inicioView()"> 
                 <img src="assets/layout-grid.svg" alt="Inicio">
+                <img src="assets/layout-grid.svg" alt="Inicio">
                 <p>Inicio</p>
             </button>
 
             <button onclick="dispositivosView()">
+                <img src="assets/monitor-speaker.svg" alt="Dispositivos">
                 <img src="assets/monitor-speaker.svg" alt="Dispositivos">
                 <p>Dispositivos</p>
             </button>
@@ -204,8 +213,10 @@
             // Asigna una imagen dependiendo del tipo de dispositivo seleccionado
             if (tipoDispositivo === "foco") {
                 img.src = "assets/lamp-ceiling.svg"; // Imagen para foco
+                img.src = "assets/lamp-ceiling.svg"; // Imagen para foco
                 img.alt = "Foco";
             } else if (tipoDispositivo === "camara") {
+                img.src = "assets/cctv.svg"; // Imagen para cámara
                 img.src = "assets/cctv.svg"; // Imagen para cámara
                 img.alt = "Cámara";
             }
