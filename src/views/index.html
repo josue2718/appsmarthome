@@ -49,7 +49,7 @@
         </div>
 
         <div class="device">
-            <button>Seleccionar</button>
+            <button onclick="abrirMisDisp()">Seleccionar</button>
         </div>
 
         <nav class="bottom-var">
@@ -70,5 +70,24 @@
         </nav>
 
     </div>
+    <script>
+        // Función para abrir el contenedor
+        function abrirMisDisp() {
+          document.getElementById("abrirMisDispositivos").style.display = "block";
+        }
+    
+        // Detectar clics fuera del contenedor para cerrarlo
+        window.addEventListener('click', function(e) {
+          const contenedor = document.getElementById("abrirMisDispositivos");
+          const botonAbrir = document.querySelector(".device button");
+    
+          // Si el contenedor está visible y el clic no es dentro del contenedor ni en el botón
+          if (contenedor.style.display === "block" &&
+              !contenedor.contains(e.target) &&
+              e.target !== botonAbrir) {
+            contenedor.style.display = "none";
+          }
+        });
+      </script>
 </body>
 </html>

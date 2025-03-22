@@ -58,6 +58,7 @@
 
 
 .select-devices {
+    display: none;
     position: absolute;
     border: 1px solid #f693ff;
     border-radius: 10px;
