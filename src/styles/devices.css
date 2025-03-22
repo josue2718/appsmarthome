@@ -15,19 +15,6 @@
     height: 100vh;
 }
 
-.BG-dev {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 90px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 90px;
-    color: #463E57;
-
-    z-index: 0;
-}
 
 .device-container  {
     border: 1px solid #B793FF;
@@ -54,7 +41,15 @@
     max-height: 520px; 
     overflow-y: auto; 
     overflow-x: hidden;
-}   
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE y Edge */
+}  
+
+.device-content::-webkit-scrollbar {
+    display: none;
+}
+
 
 .device-content button {
     border: none;
