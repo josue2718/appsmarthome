@@ -219,7 +219,7 @@ app.get('/electrodomestico/modo', async (req, res) => {
     res.status(200).json(Modo); 
 
   } catch (err) {
-    res.status(500).json({ error: 'Error en el servidor' });
+    res.status(500).json({ error: 'Error en el servido' });
   }
 });
 
