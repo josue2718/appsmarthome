@@ -13,16 +13,43 @@
 <body>
     <div class="app-container">
 
-        <div class="nav"></div>
+        <div class="nav">
 
+        </div>
+
+        <div class="select-devices" id="abrirMisDispositivos">
+            <h2>Selecciona un dispositivo</h2>
+            <div class="device-content">
+               
+            </div>
+
+
+        </div>
+
+        
+        <div id="modal-confirmacion" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <p>¿Quieres cambiar a "Modo por Hora"?</p>
+            <p>Encender: <input type="time" id="encender-time"></p>
+            <p>Apagar: <input type="time" id="apagar-time"></p>
+            <button id="confirmar-cambio">Confirmar</button>
+            <button id="cancelar-cambio">Cancelar</button>
+        </div>
+        
+        
         <div class="switch-container">
             <div class="border">
-                <label class="switch">
-                    <input type="checkbox">
+                <label class="switch" >
+                    <input type="checkbox" id="automatico">
                     <span class="slider"></span>
                 </label>
             </div>
-            <p>Modo automatico</p>
+            <p id="modo">Modo por hora</p>
+
+            <div id="hora-config">
+                <label>Encender: <p  id="prender-time"></p></label>
+                <label>Apagar: <p  id="apagar-time"></p></label>
+   
+            </div>
         </div>
 
         <div class="btn-power">
@@ -33,7 +60,7 @@
         </div>
 
         <div class="device">
-            <button>Seleccionar</button>
+            <button onclick="abrirMisDisp()">Seleccionar</button>
         </div>
 
         <nav class="bottom-var">
@@ -54,5 +81,26 @@
         </nav>
 
     </div>
+    <script>
+        // Función para abrir el contenedor
+        function abrirMisDisp() {
+          document.getElementById("abrirMisDispositivos").style.display = "block";
+        }
+    
+        // Detectar clics fuera del contenedor para cerrarlo
+        window.addEventListener('click', function(e) {
+          const contenedor = document.getElementById("abrirMisDispositivos");
+          const botonAbrir = document.querySelector(".device button");
+    
+          // Si el contenedor está visible y el clic no es dentro del contenedor ni en el botón
+          if (contenedor.style.display === "block" &&
+              !contenedor.contains(e.target) &&
+              e.target !== botonAbrir) {
+            contenedor.style.display = "none";
+          }
+        });
+      </script>
+          <script src="services/SelectDevice.js"></script>
+          <script src="services/mode.js"></script>
 </body>
 </html>

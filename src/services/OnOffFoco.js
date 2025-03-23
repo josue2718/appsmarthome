@@ -1,32 +1,42 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const toggleButton = document.getElementById("toggleButton");
     const toggleImage = document.getElementById("toggleImage");
     const toggleText = document.getElementById("toggleText");
 
-    let isOn = false;
+    await getfocoData(); // Obtener estado inicial
 
     toggleButton.addEventListener("click", async () => {
-        isOn = !isOn;
-
         try {
-            const response = await fetch("/foco", {
+            const data = await getfocoData(); 
+            const nuevoEstado = !data[0].prendido;
+
+            await fetch("/foco", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prendido: isOn })
+                body: JSON.stringify({ prendido: nuevoEstado })
             });
 
-            if (!response.ok) {
-                throw new Error("Error en la actualización");
-            }
-
-            // Si la petición es exitosa, actualizamos la interfaz
-            toggleImage.src = isOn ? "assets/ON.svg" : "assets/OFF.svg";
-            toggleText.textContent = isOn ? "Encendido" : "Apagado";
-            toggleText.style.color = isOn ? "#FFE6C9" : ""; 
-
-            console.log("Estado actualizado correctamente en MongoDB.");
+            getfocoData(); // Actualizar la interfaz después del cambio
         } catch (error) {
             console.error("Error al actualizar el estado:", error);
         }
     });
 });
+
+async function getfocoData() {
+    try {
+        const response = await fetch("/foco");
+        if (!response.ok) throw new Error(`Error: ${response.status} - ${response.statusText}`);
+
+        const data = await response.json();
+        const { prendido } = data[0];
+
+        toggleImage.src = prendido ? "assets/ON.svg" : "assets/OFF.svg";
+        toggleText.textContent = prendido ? "Encendido" : "Apagado";
+        toggleText.style.color = prendido ? "#FFE6C9" : ""; 
+
+        return data;
+    } catch (error) {
+        console.error("Error al obtener datos:", error);
+    }
+}

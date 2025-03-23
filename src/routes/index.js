@@ -212,7 +212,16 @@ app.put('/electrodomestico/modo', async (req, res) => {
   }
 });
 
+app.get('/electrodomestico/modo', async (req, res) => {
+  try {
+    const ModoCollection = db.collection('Modo'); 
+    const Modo = await ModoCollection.find({}).toArray();
+    res.status(200).json(Modo); 
 
+  } catch (err) {
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+});
 
 app.put('/foco', async (req, res) => {
   console.log('Datos recibidos:', req.body);
@@ -242,11 +251,97 @@ app.put('/foco', async (req, res) => {
 });
 
 
+
+app.get('/foco', async (req, res) => {
+  console.log('Datos recibidos:', req.body);
+
+  try {
+    const focoCollection = db.collection('foco');
+    const foco = await focoCollection.find({}).toArray(); 
+    console.log('Datos obtenidos:', foco);
+
+    res.status(200).json(foco); // Retorna los datos como respuesta
+    
+  } catch (err) {
+    console.error('Error al actualizar en MongoDB:', err);
+    res.status(500).send('Error interno del servidor.');
+  }
+});
+
+app.get('/electrodomestico', async (req, res) => {
+  console.log('Datos recibidos:', req.body);
+
+  try {
+    const electrodomesticosCollection = db.collection('Electrodomesticos');
+    const electrodomesticos= await electrodomesticosCollection.find({}).toArray(); 
+    console.log('Datos obtenidos:', electrodomesticos);
+
+    res.status(200).json(electrodomesticos); // Retorna los datos como respuesta
+    
+  } catch (err) {
+    console.error('Error al actualizar en MongoDB:', err);
+    res.status(500).send('Error interno del servidor.');
+  }
+});
+
+app.delete('/electrodomestico/:pin', async (req, res) => {
+  const { pin } = req.params;  // Extrae el pin de la URL
+
+  try {
+    const electrodomesticosCollection = db.collection('Electrodomesticos');
+    
+    // Intenta eliminar el dispositivo con el pin especificado
+    const result = await electrodomesticosCollection.deleteOne({ pin: pin });
+
+    if (result.deletedCount === 0) {
+      // Si no se encuentra un dispositivo con ese pin
+      return res.status(404).send('Dispositivo no encontrado.');
+    }
+
+    console.log(`Dispositivo con pin ${pin} eliminado`);
+    res.status(200).send('Dispositivo eliminado exitosamente.');
+  } catch (err) {
+    console.error('Error al eliminar dispositivo en MongoDB:', err);
+    res.status(500).send('Error interno del servidor.');
+  }
+});
+
+app.put('/electrodomestico/:pin', async (req, res) => {
+  const { pin } = req.params;
+
+  try {
+    const { status} = req.body; // Obtener el valor de prendido desde la solicitud
+
+    if (typeof status !== 'boolean') {
+      return res.status(400).send('El valor de prendido debe ser un booleano.');
+    }
+
+      const electrodomesticosCollection = db.collection('Electrodomesticos');
+      
+      // Actualizar el estado a activo
+      const result = await electrodomesticosCollection.updateOne(
+          { pin: pin },
+          { $set: { activo: status} }
+      );
+
+      if (result.matchedCount === 0) {
+          return res.status(404).send('Dispositivo no encontrado.');
+      }
+
+      console.log(`Dispositivo con pin ${pin} activado.`);
+      res.status(200).send('Dispositivo activado.');
+  } catch (err) {
+      console.error('Error al actualizar dispositivo:', err);
+      res.status(500).send('Error interno del servidor.');
+  }
+});
+
+
 app.post('/electrodomestico', async (req, res) => {
   console.log('Datos recibidos:', req.body);
 
   try {
-    const { nombre, activo,pin } = req.body; // Extraer los valores de req.body
+    const {tipo, nombre, activo,pin } = req.body; // Extraer los valores de req.body
 
     // Validar que 'nombre' no esté vacío
     if (!nombre) {
@@ -259,7 +354,7 @@ app.post('/electrodomestico', async (req, res) => {
 
     // Insertar el documento en MongoDB
     const collection = db.collection('Electrodomesticos');
-    await collection.insertOne({ nombre,activo,pin });
+    await collection.insertOne({ nombre,activo,pin,tipo });
 
     console.log('Datos insertados correctamente en MongoDB.');
     res.status(201).json({ mensaje: 'Datos insertados correctamente.' });

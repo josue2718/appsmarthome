@@ -10,7 +10,7 @@
 
 .app-container{
     display: grid;
-    grid-template-rows: 144px 100px 1fr 100px 100px;
+    grid-template-rows: 144px 100px 1fr 150px 100px;
     place-items: center;
     height: 100vh;
 
@@ -24,8 +24,6 @@
     align-items: center;
 
     gap: 10px;
-    position: relative;
-    top: 50px;
 }
 
 .switch-container p {
@@ -55,8 +53,124 @@
     height: 55px;
     border-radius: 50px;
 
-    position: relative;
-    bottom: 40px;
+
+}
+
+
+.select-devices {
+    display: none;
+    position: absolute;
+    border: 1px solid #f693ff;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    background-color: #191422;
+    z-index: 1000;
+    place-items: center;
+
+
+    width: 300px;
+    height: 400px;
+}
+
+.select-devices h2 {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.sd-content {
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: 20px;
+
+    width: 240px;
+    min-height: 295px;
+    max-height: 295px;
+    padding: 10px;
+
+    overflow-y: auto;
+    scrollbar-width: none; /* Para Firefox */
+    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+
+}
+
+.sd-content::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari y Opera */
+}
+
+.sd-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 260px;
+    min-height: 65px;
+    border-radius: 15px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.35);
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+  }
+  
+  /* Ocultar el checkbox */
+  .sd-item input {
+    display: none;
+  }
+  
+  /* Estilo del texto */
+  .sd-item span {
+    cursor: pointer;
+  }
+  
+  /* Cambiar color cuando está marcado */
+  .sd-item input:checked + span {
+    background-color: #1C1823;
+    color: #f1c8d1;
+    border-radius: 15px;
+  }
+  
+  /* Efecto hover */
+  .sd-item:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Efecto de click */
+  .sd-item:active {
+    transform: scale(0.95);
+  }
+  
+  /* Ocultar scrollbar */
+  .sd-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+
+.device-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+.device-content button {
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    align-content: center;
+    background-color: rgb(21, 16, 26);
+    width: 55px;
+    height: 55px;
+}
+
+
+.item-content p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+    color: aliceblue;
 }
 
 
@@ -86,7 +200,6 @@
     .device {
         grid-area: device;
         position: relative;
-        top: 30px;
         margin-right: 160px;
     }
     .device button {
@@ -98,4 +211,17 @@
     .bottom-var {
         grid-area: var;
     }
+}
+
+@media(height < 700px){
+    .app-container {
+        display: grid;
+        grid-template-rows: 70px 100px 1fr 100px 100px;
+    }
+
+    .device {
+        position: relative;
+        top: 5px;
+    }
+
 }

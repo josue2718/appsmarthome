@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar Dispositivo</title>
+    <link rel="stylesheet" href="styles/devices.css" />
+    <link rel="stylesheet" href="styles/bar.css" />
+    <link rel="stylesheet" href="styles/horario.css">
+    <script src="views/navigation.js"></script>
+    <script src="routes/horarios.js"></script>
+</head>
+<body>
+    <div class="app-container">
+
+        <nav></nav>
+
+        <div class="new-device" id="interface-1">
+            <div class="titulo">
+                <h2>Agregar dispositivo</h2>
+                <button onclick="cerrar()">
+                    <img src="assets/circle-x.svg" alt="Cerrar" />
+                </button>
+            </div>
+
+            <div class="create-device">
+                <div class="nombre">
+                    <label>Asignar nombre al dispositivo</label> 
+                    <input type="text" placeholder="Ejemplo: Foco de la sala" />   
+                </div>
+
+                <div class="tipo"> 
+                    <label>Tipo de dispositivo</label>
+                    <select id="tipoDispositivo">
+                        <option value="foco">Foco</option>
+                        <option value="camara">Cámara</option>
+                    </select>
+                </div>
+
+                <div class="numero"> 
+                    <label>Lugar</label>
+                    <select id="lugar">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>   
+                    </select>
+                </div>
+            </div>
+
+            <div class="add-btn">
+                <button onclick="agregarItem()">
+                    Agregar
+                </button>
+            </div>
+
+        </div>
+
+        <div class="device-config" id="interface-2">
+            <div class="titulo">
+                <h2>Programar horario</h2>
+                <button onclick="cerrarConfig()">
+                    <img src="assets/circle-x.svg" alt="">
+                </button>
+            </div>
+
+            <p class="info-horario">Programar horario de encendido</p>
+
+            <div class="configurar-disp">
+                <div class="hora-inicio">
+                    <div class="horario-content">
+                        <div class="hora">
+                            <input type="number" id="hora-inicio" class="hora" min="1" max="12" placeholder="00">
+                        </div>
+                        <div class="puntos">
+                            <h4>:</h4>
+                        </div>
+                        <div class="min">
+                            <input type="number" id="minuto-inicio" class="min" min="0" max="59" placeholder="00">
+                        </div>
+                        <div class="periodo-am-pm">
+                            <select id="periodo-inicio">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="hora-inicio">Hora de inicio</label>
+                </div>
+        
+                <div class="hora-final">
+                    <div class="horario-content">
+                        <div class="hora">
+                            <input type="number" id="hora-final" class="hora" min="1" max="12" placeholder="00">
+                        </div>
+                        <div class="puntos">
+                            <h4>:</h4>
+                        </div>
+                        <div class="min">
+                            <input type="number" id="minuto-final" class="min" min="0" max="59" placeholder="00">
+                        </div>
+                        <div class="periodo-am-pm">
+                            <select id="periodo-final">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="hora-final">Hora de finalización</label>
+                </div>
+            </div>
+        
+            <div class="aplication-btn">
+                <button onclick="aplicarHorario()">
+                    <p>Aceptar</p>
+                </button>
+            </div>
+        </div>
+        
+
+        <div class="device-container" id="device-view">
+            <div class="titulo">
+                <h2>Dispositivos</h2>
+            </div>
+
+            <div class="device-content">
+                <div class="item-content">
+                    <button onclick="Agregar()">
+                        <img src="assets/+.svg" alt="Agregar" />
+                    </button>
+                    <p>Agregar</p> 
+                </div> 
+            </div>
+
+
+        </div>
+
+        <nav class="bottom-var">
+            <button onclick="monitoreoView()">
+                <img src="assets/activity.svg" alt="Monitoreo" />
+                <p>Monitoreo</p>
+            </button>
+
+            <button onclick="inicioView()"> 
+                <img src="assets/layout-grid.svg" alt="Inicio" />
+                <p>Inicio</p>
+            </button>
+            
+            <button onclick="dispositivosView()">
+                <img src="assets/monitor-speaker.svg" alt="Dispositivos" />
+                <p>Dispositivos</p>
+            </button>
+        </nav>
+    </div>
+
+    <script>
+        function Agregar() {
+            document.getElementById("interface-1").style.display = "block";
+            document.getElementById("device-view").style.display = "none";
+        }
+
+        // Función para cerrar el panel y volver a la vista de dispositivos     
+        function cerrar() {
+            document.getElementById("interface-1").style.display = "none";
+            document.getElementById("device-view").style.display = "block";
+        }
+
+        function cerrarConfig() {
+            document.getElementById("interface-2").style.display = "none";
+            document.getElementById("device-view").style.display = "block";
+        }
+
+        // Función para agregar elementos
+        // Función para agregar elementos
+       // Función para agregar elementos
+        function agregarItem() {
+            // Obtén el valor del tipo de dispositivo seleccionado
+            const tipoDispositivo = document.getElementById("tipoDispositivo").value;
+
+            // Crea un nuevo div con la clase "item-content"
+            const nuevoItem = document.createElement("div");
+            nuevoItem.classList.add("item-content");
+
+            // Agrega un botón e imagen al nuevo div
+            const boton = document.createElement("button");
+            const img = document.createElement("img");
+
+            // Asigna una imagen dependiendo del tipo de dispositivo seleccionado
+            if (tipoDispositivo === "foco") {
+                img.src = "assets/lamp-ceiling.svg"; // Imagen para foco
+                img.src = "assets/lamp-ceiling.svg"; // Imagen para foco
+                img.alt = "Foco";
+            } else if (tipoDispositivo === "camara") {
+                img.src = "assets/cctv.svg"; // Imagen para cámara
+                img.src = "assets/cctv.svg"; // Imagen para cámara
+                img.alt = "Cámara";
+            }
+
+            boton.appendChild(img);
+
+            // Agregar funcionalidad personalizada al botón
+            boton.addEventListener("click", function () {
+                // Define aquí la función personalizada para el dispositivo
+                accionPersonalizada(tipoDispositivo);
+            });
+
+            const parrafo = document.createElement("p");
+            parrafo.textContent = tipoDispositivo.charAt(0).toUpperCase() + tipoDispositivo.slice(1);
+
+            // Adjunta el botón y el párrafo al nuevo div
+            nuevoItem.appendChild(boton);
+            nuevoItem.appendChild(parrafo);
+
+            // Inserta el nuevo div en el contenedor "device-content"
+            const contenedor = document.querySelector(".device-content");
+            contenedor.appendChild(nuevoItem);
+
+            // Cierra el panel de agregar dispositivo
+            cerrar();
+        }
+
+        // Función para manejar una acción personalizada
+        function accionPersonalizada(tipo) {
+            document.getElementById("interface-2").style.display = "block";
+            document.getElementById("device-view").style.display = "none";
+        }
+
+
+    </script>
+    
+    <!-- Archivo de JavaScript para agregar dispositivos -->
+    <script src="services/addDevice.js"></script>
+</body>
+</html>
