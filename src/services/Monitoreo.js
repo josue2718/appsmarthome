@@ -80,7 +80,7 @@ async function getSensorData() {
       agregarNotificacion(`Fecha de Inicio: ${formatoFecha}`);
     } catch (error) {
       console.error('Error al obtener los datos del sensor:', error);
-      agregarNotificacion('Error al obtener los datos del sensor.');
+      agregarNotificacion('Error al obtener los datos del senso.');
     }
   }
 

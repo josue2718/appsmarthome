@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             getfocoData(); // Actualizar la interfaz después del cambio
         } catch (error) {
-            console.error("Error al actualizar el estado:", error);
+            console.error("Error al actualizar el estad:", error);
         }
     });
 });

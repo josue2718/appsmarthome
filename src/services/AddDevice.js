@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Error: " + result.error);
             }
         } catch (error) {
-            console.error("Error al enviar la petición:", error);
+            console.error("Error al enviar la peticin:", error);
             alert("Hubo un problema al agregar el dispositivo.");
         }
     });
