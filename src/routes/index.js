@@ -49,7 +49,18 @@ app.get('/dispositivos', (req, res) => {
 
 
 
+app.get('/sensorentrada', async (req, res) => {
+  try {
+    const entredasCollection = db.collection('entradas');
+    const entredas = await entredasCollection.find({}).toArray(); 
 
+
+    res.status(200).json(entredas); // Retorna los datos como respuesta
+  } catch (err) {
+    console.error('Error al obtener datos de MongoDB:', err);
+    res.status(500).send('Error interno del servidor.');
+  }
+});
 
 
 app.get('/arduino', async (req, res) => {
