@@ -9,6 +9,7 @@ async function getDeviceData() {
 
         const data = await response.json();
         console.log('Datos del sensor:', data);
+        
         return data;
     } catch (error) {
         console.error('Error en la solicitud:', error);
@@ -16,7 +17,45 @@ async function getDeviceData() {
     }
 }
 
-function agregarItem(tipoDispositivo, pin) {
+async function cargarDatosdevice() {
+    try {
+        const data = await getDeviceData();
+        if (!Array.isArray(data) || data.length === 0) {
+            return;
+        }
+        
+       
+
+        // Agregar dispositivos a la lista
+        data.forEach(device => agregarItem(device.tipo, device.pin, device.activo));
+        
+        // Actualizar las opciones del select
+        updateSelectOptions(data); // Pasamos `data` directamente aquí
+    } catch (error) {
+        console.error('Error al cargar dispositivos:', error);
+    }
+}
+
+function updateSelectOptions(devices) {
+    const selectElement = document.getElementById('lugar');
+    
+    // Convertimos las opciones de lugar en un array para poder iterarlas
+    const availableOptions = Array.from(selectElement.options);
+
+    // Iteramos sobre las opciones y las eliminamos si el pin está en uso
+    availableOptions.forEach(option => {
+        const optionValue = option.value;
+
+        // Comprobamos si ese lugar está marcado como ocupado (por ejemplo, si el "pin" está en uso)
+        if (devices.some(device => device.pin === optionValue && device.activo)) {
+            option.disabled = true;  // Deshabilitamos la opción si está en uso
+        } else {
+            option.disabled = false;  // Habilitamos la opción si no está en uso
+        }
+    });
+}
+
+function agregarItem(tipoDispositivo, pin, activo) {
     const nuevoItem = document.createElement("div");
     nuevoItem.classList.add("item-content");
 
@@ -106,17 +145,5 @@ async function eliminarDispositivo(pin, modal) {
     }
 }
 
-async function cargarDatosdevice() {
-    try {
-        const data = await getDeviceData();
-        if (!Array.isArray(data) || data.length === 0) {
-            return;
-        }
-
-        data.forEach(device => agregarItem(device.tipo, device.pin)); // Agregar cada dispositivo
-    } catch (error) {
-        console.error('Error al cargar dispositivos:', error);
-    }
-}
-
+// Llamar a cargarDatosdevice cuando la página esté lista
 document.addEventListener('DOMContentLoaded', cargarDatosdevice);
