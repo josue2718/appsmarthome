@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     addButton.addEventListener("click", async function () {
         const nombre = document.querySelector(".nombre input").value.trim();
-        const tipoDispositivo = document.querySelector("#tipoDispositivo").value;
-        const pin = Math.floor(Math.random() * 100); // Simulación de un pin
-        
+        const tipoDispositivo = document.getElementById("tipoDispositivo").value;
+        const pin = document.getElementById("lugar").value;
+        console.log(pin);
         if (!nombre) {
             alert("Por favor, ingrese un nombre para el dispositivo.");
             return;
@@ -14,11 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = {
             nombre: nombre,
             activo: false, // Inicialmente el dispositivo está apagado
-            pin: pin
+            pin: pin,
+            tipo:tipoDispositivo
         };
 
         try {
-            const response = await fetch("http://localhost:3000/electrodomestico", {
+            const response = await fetch("/electrodomestico", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -35,8 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Error: " + result.error);
             }
         } catch (error) {
-            console.error("Error al enviar la petición:", error);
+            console.error("Error al enviar la peticin:", error);
             alert("Hubo un problema al agregar el dispositivo.");
         }
     });
 });
+
+
