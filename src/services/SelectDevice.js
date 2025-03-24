@@ -83,4 +83,9 @@ async function cargarDatosdevice() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', cargarDatosdevice);
+document.addEventListener('DOMContentLoaded', () => {
+    cargarDatosdevice(); // Cargar datos una vez al inicio
+
+    // Actualizar cada 500 ms
+    setInterval(cargarDatosdevice, 500);
+});

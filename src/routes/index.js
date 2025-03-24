@@ -91,40 +91,46 @@ app.post('/entrada', async (req, res) => {
   console.log('Datos recibidos:', req.body);
 
   try {
-    
-    const now = new Date();
-    const fechainicio = now.toLocaleString('es-MX', {
-      timeZone: 'America/Mexico_City', // Zona horaria de México
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false // Para obtener formato de 24 horas
-    }).replace(',', ''); // Elimina la coma entre fecha y hora
-    const prendido= true;
+      const now = new Date();
+      const fechainicio = now.toLocaleString('es-MX', {
+          timeZone: 'America/Mexico_City',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+      }).replace(',', '');
 
-    // Insertar el documento en MongoDB
-    const collection = db.collection('entradas');
-    await collection.insertOne({ fechainicio});
+      const prendido = true;
 
+      const collection = db.collection('entradas');
+      await collection.insertOne({ fechainicio });
 
-    const collection2 = db.collection('foco');
+      const collection2 = db.collection('foco');
+      const result = await collection2.updateOne({}, { $set: { prendido } });
 
-    // Actualizar el documento existente
-    const result = await collection2.updateOne({}, { $set: { prendido } });
+      if (result.matchedCount === 0) {
+          return res.status(404).send('No se encontró un documento para actualizar.');
+      }
 
-    if (result.matchedCount === 0) {
-      return res.status(404).send('No se encontró un documento para actualizar.');
-    }
+      console.log('Datos insertados correctamente en MongoDB.');
 
-    console.log('Datos insertados correctamente en MongoDB.');
-    res.status(200).send('Datos insertados correctamente.');
+      // Enviar respuesta con la fecha para la notificación
+      res.status(200).json({ mensaje: 'Nueva entrada registrada', fechainicio });
+      res.json([{ fechainicio: "23/03/2025 18:40" }, { fechainicio: "23/03/2025 18:41" }]);
+
   } catch (err) {
-    console.error('Error al insertar en MongoDB:', err);
-    res.status(500).send('Error interno del servidor.');
+      console.error('Error al insertar en MongoDB:', err);
+      res.status(500).send('Error interno del servidor.');
   }
 });
+
+
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'service-worker.js'));
+});
+
 
 app.put('/electrodomestico/modo', async (req, res) => {
   try {

@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("Error al actualizar el estad:", error);
         }
     });
+    setInterval(getfocoData, 500);
 });
 
 async function getfocoData() {
@@ -40,3 +41,5 @@ async function getfocoData() {
         console.error("Error al obtener datos:", error);
     }
 }
+
+

@@ -1,87 +1,61 @@
 async function getSensorData() {
-    const url = '/sensorentrada';
-  
-    try {
+  const url = '/sensorentrada';
+
+  try {
       const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' }
       });
-  
+
       if (!response.ok) {
-        throw new Error(`Error al obtener los datos: ${response.status} - ${response.statusText}`);
+          throw new Error(`Error al obtener los datos: ${response.status} - ${response.statusText}`);
       }
-  
+
       const data = await response.json();
       console.log('Datos del sensor:', data);
       return data;
-    } catch (error) {
+  } catch (error) {
       console.error('Error en la solicitud:', error);
-    }
+      return [];
   }
+}
 
+// Función para mostrar las notificaciones con íconos y actualizar la UI
+function mostrarNotificaciones(datos) {
+  const notifyContainer = document.getElementById("notifyContainer");
+  notifyContainer.innerHTML = ""; // Limpiar notificaciones anteriores
 
-  function agregarNotificacion(mensaje) {
-    const notifyContainer = document.getElementById("notifyContainer");
+  datos.forEach(sensor => {
+      const notificacion = document.createElement("div");
+      notificacion.className = "notificacion";
 
-    const nuevaNotificacion = document.createElement("div");
-    nuevaNotificacion.className = "notificacion";
+      const icono = document.createElement("img");
+      icono.className = "icono";
 
-    const textoCompleto = document.createElement("span");
-    textoCompleto.textContent = mensaje;
-    textoCompleto.className = "texto-completo";
-    nuevaNotificacion.appendChild(textoCompleto);
+      const texto = document.createElement("span");
+      texto.textContent = `Fecha: ${sensor.fechainicio}`;
+      texto.className = "texto";
 
-    const textoTruncado = mensaje.length > 60 ? mensaje.slice(0, 57) + "..." : mensaje;
-    const textoVisible = document.createElement("span");
-    textoVisible.textContent = textoTruncado;
-    textoVisible.className = "texto-visible";
-    nuevaNotificacion.appendChild(textoVisible);
+      
+      notificacion.appendChild(icono);
+      notificacion.appendChild(texto);
+      notifyContainer.appendChild(notificacion);
+  });
+}
 
-    nuevaNotificacion.addEventListener("click", () => {
-      const esExpandida = nuevaNotificacion.classList.toggle("expandida");
-      textoVisible.style.display = esExpandida ? "none" : "inline";
-      textoCompleto.style.display = esExpandida ? "inline" : "none";
-    });
-
-    textoCompleto.style.display = "none";
-    notifyContainer.appendChild(nuevaNotificacion);
+// Función que obtiene los datos y los actualiza en la UI
+async function actualizarDatosSensor() {
+  const datos = await getSensorData();
+  
+  if (Array.isArray(datos) && datos.length > 0) {
+      mostrarNotificaciones(datos);
+  } else {
+      mostrarNotificaciones([{ fechainicio: "No hay datos disponibles" }]);
   }
+}
 
-  async function cargarDatosSensor() {
-    try {
-      const data = await getSensorData();
-      if (!data) {
-        agregarNotificacion('No hay datos disponibles del sensor.');
-        return;
-      }
-
-      // Si la respuesta es un array, tomar el primer objeto
-      const sensorData = Array.isArray(data) && data.length > 0 ? data[0] : data;
-
-      // Validar si existe la propiedad fechainicio
-      if (!sensorData.fechainicio) {
-        agregarNotificacion('Fecha de inicio no disponible.');
-        return;
-      }
-
-      // Extraer y formatear la fecha
-      const fechaPartes = sensorData.fechainicio.split(' ')[0].split('/');
-      const fecha = new Date(fechaPartes[2], fechaPartes[1] - 1, fechaPartes[0]);
-
-      const formatoFecha = new Intl.DateTimeFormat('es-ES', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      }).format(fecha);
-
-      // Mostrar solo la fecha en la UI
-      agregarNotificacion(`Fecha de Inicio: ${formatoFecha}`);
-    } catch (error) {
-      console.error('Error al obtener los datos del sensor:', error);
-      agregarNotificacion('Error al obtener los datos del senso.');
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', cargarDatosSensor);
+// Llamar a la función cada 500ms
+document.addEventListener('DOMContentLoaded', () => {
+  actualizarDatosSensor(); // Llamado inicial
+  setInterval(actualizarDatosSensor, 1000); // Actualización cada 500ms
+});
