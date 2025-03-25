@@ -15,7 +15,9 @@
 
 /* Contenedor del modal */
 .modal-content {
-    background: white;
+    background-color: #282331;
+    border: 2px solid #5a5464;
+    color: white;
     padding: 20px;
     border-radius: 8px;
     width: 40%;
@@ -36,6 +38,7 @@
     cursor: pointer;
     border: none;
     background: none;
+    color: #fff;
 }
 
 /* Animación de entrada */

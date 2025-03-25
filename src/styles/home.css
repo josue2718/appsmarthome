@@ -243,6 +243,8 @@
     font-size: 14px;
 }
 
+
+
 @media(width>1000px) {
     .app-container{
         display: grid;
