@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/home.css">
     <link rel="stylesheet" href="styles/switch.css">
     <link rel="stylesheet" href="styles/bar.css">
+    <link rel="stylesheet" href="styles/camara.css">
     <script src="views/navigation.js"></script>
     <script defer src="services/OnOffFoco.js"></script> <!-- Se carga el nuevo script -->
 </head>
@@ -23,9 +24,9 @@
                
             </div>
 
-
+            
         </div>
-
+        <button id="openModal">Abrir Modal</button>
         
         <div class="modo-hora-container" id="modal-confirmacion">
             <p>¿Quieres cambiar a "Modo por Hora"?</p>
@@ -53,7 +54,7 @@
             </div>
 
             <p id="modo">Modo por hora</p>
-
+            
             <div id="hora-config">
                 <div class="time">
                     <div class="start">
@@ -93,9 +94,62 @@
                 <p>Dispositivos</p>
             </button>
         </nav>
+       
+
+        <div id="myModal" class="modal" style="display: none;" >
+            <div class="modal-content">
+                <h2>Camara</h2>
+                <br>
+                <button class="close-btn">&times;</button>
+                <div id="camera-stream">
+                    <img id="live-feed" src="http://192.168.22.34:81/stream" alt="Cámara en vivo">
+                </div>
+            </div>
+
+           
+        </div>
+        
+     
+        
 
     </div>
     <script>
+
+
+    const modal = document.getElementById("myModal");
+    const openBtn = document.getElementById("openModal");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Función para abrir el modal
+    function openModal() {
+        modal.style.display = "flex";
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Evento para abrir el modal
+    openBtn.addEventListener("click", openModal);
+
+    // Evento para cerrar el modal con el botón
+    closeBtn.addEventListener("click", closeModal);
+
+    // Evento para cerrar el modal haciendo clic fuera del contenido
+    window.addEventListener("click", function (e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Evento para cerrar el modal con la tecla "Esc"
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    });
+
         // Función para abrir el contenedor
         function abrirMisDisp() {
           document.getElementById("abrirMisDispositivos").style.display = "block";
