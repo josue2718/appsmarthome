@@ -46,9 +46,10 @@ function mostrarNotificaciones(datos) {
 // Función que obtiene los datos y los actualiza en la UI
 async function actualizarDatosSensor() {
   const datos = await getSensorData();
+
   
   if (Array.isArray(datos) && datos.length > 0) {
-      mostrarNotificaciones(datos);
+      mostrarNotificaciones(datos.reverse()); // Invertir el array
   } else {
       mostrarNotificaciones([{ fechainicio: "No hay datos disponibles" }]);
   }
