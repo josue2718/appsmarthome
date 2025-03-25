@@ -16,7 +16,7 @@ async function getmodoData() {
         document.getElementById("encender-time").value = horario.encender || "00:00";
         document.getElementById("apagar-time").value = horario.apagar || "00:00";
         document.getElementById("prender-time").textContent = horario.encender || "00:00";
-        document.getElementById("apagar-time").textContent = horario.apagar || "00:00";
+        document.getElementById("apagar-time1").textContent = horario.apagar || "00:00";
 
         // Actualizar la interfaz según el modo
         actualizarModoUI(modo);

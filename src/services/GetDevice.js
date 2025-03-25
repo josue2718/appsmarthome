@@ -118,10 +118,14 @@ function mostrarModalConfirmacion(pin) {
 document.querySelector(".app-container").appendChild(modal);
 }
 
-// Cerrar modal
 function cerrarModal(modal) {
-    document.body.removeChild(modal);
+    if (modal && modal.parentNode) {
+        modal.parentNode.removeChild(modal);
+    } else {
+        console.warn("El modal no existe o ya fue eliminado.");
+    }
 }
+
 
 // Función para eliminar el dispositivo
 async function eliminarDispositivo(pin, modal) {

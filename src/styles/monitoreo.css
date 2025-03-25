@@ -6,6 +6,15 @@
     font-family: 'Roboto';
 }
 
+.notify {
+    margin-top: 10px;
+    max-height: 550px; /* Ajusta según el tamaño deseado */
+    overflow-y: auto; /* Habilita el scroll vertical si el contenido excede */
+
+    box-sizing: border-box;
+}
+
+
 .app-container{
     display: grid;
     place-items: center;
