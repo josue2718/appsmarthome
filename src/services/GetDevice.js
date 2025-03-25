@@ -115,7 +115,7 @@ function mostrarModalConfirmacion(pin) {
     modalContent.appendChild(botones);
     modal.appendChild(modalContent);
 
-    document.body.appendChild(modal);
+document.querySelector(".app-container").appendChild(modal);
 }
 
 // Cerrar modal

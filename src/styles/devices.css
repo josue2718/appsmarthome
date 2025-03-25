@@ -228,36 +228,53 @@
     background-color: rgba(187, 161, 248, 0.5)   ;
 }
 
-
-
-/* Configurar el dispositivo */
-.device-config {
-    display: none;
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1000;
+    background-color: rgb(0, 0, 0, 0.35);
+}
+.modal-content {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-    border: 1px solid #B793FF;
-    border-radius: 20px;
-    background-color: rgb(0, 0, 0, 0.28);
-    width: 310px;
-    height: 574px;
-    color: white;
+
+    
     padding: 20px;
-    position: relative;
-    bottom: 10px;
+    border-radius: 10px;
+    width: 250px;
+    background: #17141f;
+    border: 1px solid #d1bcfc;
+    color: #d1d1d1;
 }
 
-.configurar-disp {
-    display: grid;
-    grid-auto-columns: 1fr 1fr;
-    grid-template-areas:
-    "inicio final"
-    "aceptar aceptar";
-    
-    gap: 25px;
-    margin-top: 20px;
-    
+.modal-buttons {
+    margin-top: 10px;
+    display: flex;
+    place-content: center;
+    gap: 20px;
 }
 
-.info-horario {
-    margin-top: 20px;
+.modal-buttons button:first-child{
+    padding: 10px;
+    border: none;
+    color: #fff;
+    background-color: rgb(0, 0, 0, 0.35);
+    border-radius: 5px;
+    border: 1px solid #544b66;
+}
+
+.modal-buttons button:last-child{
+    padding: 10px;
+    border: none;
+    color: #ff98ae;
+    background-color: rgb(0, 0, 0, 0.35);
+    border-radius: 5px;
+    border: 1px solid #544b66;
 }

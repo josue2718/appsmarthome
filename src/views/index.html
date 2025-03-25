@@ -27,12 +27,20 @@
         </div>
 
         
-        <div id="modal-confirmacion" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+        <div class="modo-hora-container" id="modal-confirmacion">
             <p>¿Quieres cambiar a "Modo por Hora"?</p>
-            <p>Encender: <input type="time" id="encender-time"></p>
-            <p>Apagar: <input type="time" id="apagar-time"></p>
-            <button id="confirmar-cambio">Confirmar</button>
-            <button id="cancelar-cambio">Cancelar</button>
+            <div class="mh-content">
+                <div class="hora-container">
+                    <p>Encender</p>
+                    <input type="time" id="encender-time">
+                    <p>Apagar</p>
+                    <input type="time" id="apagar-time">
+                </div>
+                <div class="hora-btn">
+                    <button id="confirmar-cambio">Confirmar</button>
+                    <button id="cancelar-cambio">Cancelar</button>
+                </div>
+            </div>
         </div>
         
         
@@ -43,12 +51,18 @@
                     <span class="slider"></span>
                 </label>
             </div>
+
             <p id="modo">Modo por hora</p>
 
             <div id="hora-config">
-                <label>Encender: <p  id="prender-time"></p></label>
-                <label>Apagar: <p  id="apagar-time"></p></label>
-   
+                <div class="time">
+                    <div class="start">
+                        <label>Inicio  <p id="prender-time"></p>  </label>
+                    </div>
+                    <div class="end">
+                        <label>Final <p id="apagar-time"></p>  </label>
+                    </div>
+                </div>   
             </div>
         </div>
 

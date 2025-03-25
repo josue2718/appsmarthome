@@ -56,67 +56,7 @@
             </div>
 
         </div>
-
-        <div class="device-config" id="interface-2">
-            <div class="titulo">
-                <h2>Programar horario</h2>
-                <button onclick="cerrarConfig()">
-                    <img src="assets/circle-x.svg" alt="">
-                </button>
-            </div>
-
-            <p class="info-horario">Programar horario de encendido</p>
-
-            <div class="configurar-disp">
-                <div class="hora-inicio">
-                    <div class="horario-content">
-                        <div class="hora">
-                            <input type="number" id="hora-inicio" class="hora" min="1" max="12" placeholder="00">
-                        </div>
-                        <div class="puntos">
-                            <h4>:</h4>
-                        </div>
-                        <div class="min">
-                            <input type="number" id="minuto-inicio" class="min" min="0" max="59" placeholder="00">
-                        </div>
-                        <div class="periodo-am-pm">
-                            <select id="periodo-inicio">
-                                <option value="AM">AM</option>
-                                <option value="PM">PM</option>
-                            </select>
-                        </div>
-                    </div>
-                    <label for="hora-inicio">Hora de inicio</label>
-                </div>
         
-                <div class="hora-final">
-                    <div class="horario-content">
-                        <div class="hora">
-                            <input type="number" id="hora-final" class="hora" min="1" max="12" placeholder="00">
-                        </div>
-                        <div class="puntos">
-                            <h4>:</h4>
-                        </div>
-                        <div class="min">
-                            <input type="number" id="minuto-final" class="min" min="0" max="59" placeholder="00">
-                        </div>
-                        <div class="periodo-am-pm">
-                            <select id="periodo-final">
-                                <option value="AM">AM</option>
-                                <option value="PM">PM</option>
-                            </select>
-                        </div>
-                    </div>
-                    <label for="hora-final">Hora de finalización</label>
-                </div>
-            </div>
-        
-            <div class="aplication-btn">
-                <button onclick="aplicarHorario()">
-                    <p>Aceptar</p>
-                </button>
-            </div>
-        </div>
         
 
         <div class="device-container" id="device-view">

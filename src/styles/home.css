@@ -62,7 +62,7 @@
     position: absolute;
     border: 1px solid #f693ff;
     border-radius: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 12px;
     background-color: #191422;
     z-index: 1000;
     place-items: center;
@@ -80,7 +80,7 @@
     margin-bottom: 20px;
 }
 
-.sd-content {
+.device-content {
     display: flex;
     display: flex;
     flex-direction: column;
@@ -97,183 +97,153 @@
     -ms-overflow-style: none; /* Para Internet Explorer y Edge */
 
 }
-
-.sd-content::-webkit-scrollbar {
-    display: none; /* Para Chrome, Safari y Opera */
-}
-
-.sd-item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    min-width: 260px;
-    min-height: 65px;
-    border-radius: 15px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.35);
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.1s;
-  }
-  
-  /* Ocultar el checkbox */
-  .sd-item input {
-    display: none;
-  }
-  
-  /* Estilo del texto */
-  .sd-item span {
-    cursor: pointer;
-  }
-  
-  /* Cambiar color cuando está marcado */
-  .sd-item input:checked + span {
-    background-color: #1C1823;
-    color: #f1c8d1;
-    border-radius: 15px;
-  }
-  
-  /* Efecto hover */
-  .sd-item:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Efecto de click */
-  .sd-item:active {
-    transform: scale(0.95);
-  }
-  
-  /* Ocultar scrollbar */
-  .sd-content::-webkit-scrollbar {
-    display: none;
-  }
-  
 
 .device-content::-webkit-scrollbar {
-    display: none;
-}
-
-
-.device-content button {
-    border: none;
-    border-radius: 20px;
-    text-align: center;
-    align-content: center;
-    background-color: rgb(21, 16, 26);
-    width: 55px;
-    height: 55px;
-}
-
-
-.item-content p {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 10px;
-    color: aliceblue;
-}
-
-}
-
-
-.select-devices {
-    display: none;
-    position: absolute;
-    border: 1px solid #f693ff;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    background-color: #191422;
-    z-index: 1000;
-    place-items: center;
-
-
-    width: 300px;
-    height: 400px;
-}
-
-.select-devices h2 {
-    text-align: center;
-    color: white;
-    margin-top: 20px;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-.sd-content {
-    display: flex;
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    gap: 20px;
-
-    width: 240px;
-    min-height: 295px;
-    max-height: 295px;
-    padding: 10px;
-
-    overflow-y: auto;
-    scrollbar-width: none; /* Para Firefox */
-    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
-
-}
-
-.sd-content::-webkit-scrollbar {
     display: none; /* Para Chrome, Safari y Opera */
 }
 
-.sd-item {
-    display: inline-flex;
+
+.item-content button {
+    border: none;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    padding: 10px;    
+
     min-width: 260px;
     min-height: 65px;
-    border-radius: 15px;
+    border-radius: 10px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.35);
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.1s;
-  }
-  
-  /* Ocultar el checkbox */
-  .sd-item input {
+    background-color: rgb(0, 0, 0, 0.35);
+}
+
+.item-content img {
+    background-color: #191422;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #241E31;
+}
+
+.item-content p{
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.modo-hora-container {
+    position: absolute;
+
+
     display: none;
+    background-color: #302a3b;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #a993d856;
+    color: rgb(199, 183, 218);
+    z-index: 1001;
+}
+
+.modo-hora-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    pointer-events: all;
+    background: rgb(0, 0, 0, 0.1);
   }
-  
-  /* Estilo del texto */
-  .sd-item span {
-    cursor: pointer;
+
+  .modo-hora-container * {
+    position: relative;
+    z-index: 1002;
   }
-  
-  /* Cambiar color cuando está marcado */
-  .sd-item input:checked + span {
-    background-color: #1C1823;
-    color: #f1c8d1;
-    border-radius: 15px;
-  }
-  
-  /* Efecto hover */
-  .sd-item:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Efecto de click */
-  .sd-item:active {
-    transform: scale(0.95);
-  }
-  
-  /* Ocultar scrollbar */
-  .sd-content::-webkit-scrollbar {
-    display: none;
-  }
-  
+
+.mh-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.hora-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}   
+
+.hora-container input {
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(237, 226, 255, 0.35);
+    padding: 10px;
+    font-size: 18px;
+}
+
+.hora-container p {
+    color: #ffffff;
+}
 
 
+.hora-btn {
+    margin-top: 80px;
+    display: flex;
+    place-content: center;
+    gap: 20px;
+}
 
+.hora-btn button {
+    border: none;
+    border: 1px solid #E1C9FF;
+    border-radius: 10px;
+    color: white;
+    width: 80px;
+    height: 40px;
+    background-color: #191422;
+    
+}
 
+.hora-container input:focus {
+    outline: #000000 2px solid;
+    box-shadow: 0 0 0 3px #E1C9FF; /* Segundo borde (externo) */
+}
 
-@media(width>1000px){
+.hora-container input:hover {
+    background-color: #f2d3f848;
+}
+
+#hora-config {
+    display: flex;
+    place-items: center;
+}
+
+.time {
+    display: flex;
+    gap: 190px;
+    color: white;
+    text-align: center;
+}
+
+.start label, .end label {
+    font-size: 12px;
+}
+
+.start, .end {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #4b425c;
+    background-color: #302a3b;
+    border-radius: 10px;
+    align-content: center;
+    justify-content: center;
+}
+
+.time p {
+    color: #ffc9df;
+    font-size: 14px;
+}
+
+@media(width>1000px) {
     .app-container{
         display: grid;
         grid-template-areas: 

@@ -37,8 +37,6 @@ function agregarItem(tipoDispositivo, pin, activo) {
     const nuevoItem = document.createElement("div");
     nuevoItem.classList.add("item-content");
 
- 
-
     const boton = document.createElement("button");
     const img = document.createElement("img");
 
@@ -51,22 +49,29 @@ function agregarItem(tipoDispositivo, pin, activo) {
     img.src = imagenes[tipoDispositivo] || "assets/default.svg"; 
     img.alt = tipoDispositivo.charAt(0).toUpperCase() + tipoDispositivo.slice(1);
 
-    boton.appendChild(img);
-
-    // Evento para actualizar el estado del dispositivo al hacer clic
-    boton.addEventListener("click", () =>  activo ? actualizarEstadoDispositivo(pin, false) : actualizarEstadoDispositivo(pin, true));
-
     const parrafo = document.createElement("p");
     parrafo.textContent = tipoDispositivo + " " + pin;
 
+    // Agrega la imagen y el párrafo al botón
+    boton.appendChild(img);
+    boton.appendChild(parrafo); 
+    
+    // Evento para actualizar el estado del dispositivo al hacer clic
+    boton.addEventListener("click", () =>  
+        activo ? actualizarEstadoDispositivo(pin, false) : actualizarEstadoDispositivo(pin, true)
+    );
+
     nuevoItem.appendChild(boton);
-    nuevoItem.appendChild(parrafo);
-   // Si el dispositivo está activo, cambia el color de fondo
+
+    // Si el dispositivo está activo, cambia el color de fondo
     if (activo) {
-        boton.style.backgroundColor ="rgb(111, 16, 206)"; 
+        boton.style.border = "1px solid rgb(255, 156, 164)"; 
+        parrafo.style.color = "rgb(245, 189, 220)"
     }
+
     document.querySelector(".device-content").appendChild(nuevoItem);
 }
+
 
 async function cargarDatosdevice() {
     try {
